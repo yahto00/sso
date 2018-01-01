@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+      http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+      ">
+    <bean id="stringRedisSerializer" class="org.springframework.data.redis.serializer.StringRedisSerializer"/>
+    <!-- version -->
+    <bean id="versionJedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+        <property name="minIdle" value="${version.redis.minIdle}"/>
+        <property name="maxIdle" value="${version.redis.maxIdle}"/>
+        <property name="testOnBorrow" value="${version.redis.testOnBorrow}"/>
+        <property name="testOnReturn" value="${version.redis.testOnReturn}"/>
+        <property name="testWhileIdle" value="${version.redis.testWhileIdle}"/>
+        <property name="timeBetweenEvictionRunsMillis"
+                  value="${version.redis.timeBetweenEvictionRunsMillis}"/>
+        <property name="numTestsPerEvictionRun" value="${version.redis.numTestsPerEvictionRun}"/>
+        <property name="minEvictableIdleTimeMillis"
+                  value="${version.redis.minEvictableIdleTimeMillis}"/>
+        <property name="softMinEvictableIdleTimeMillis"
+                  value="${version.redis.softMinEvictableIdleTimeMillis}"/>
+    </bean>
+</beans>

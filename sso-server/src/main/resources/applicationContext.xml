@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+    <!--读取配置文件-->
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+
+            </list>
+        </property>
+    </bean>
+    <import resource="classpath:redis-context.xml"/>
+
+    <!--Mybatis主从配置-->
+    <bean id="masterDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="driverClass" value="${jdbc.dirver}"/>
+        <property name="jdbcUrl" value="${jdbc.master.url}"/>
+        <property name="user" value="${jdbc.master.user}"/>
+        <property name="password" value="${jdbc.master.password}"/>
+        <property name="initialPoolSize" value="${jdbc.pool.initialPoolSize}"/>
+        <property name="minPoolSize" value="${jdbc.pool.minPoolSize}"/>
+        <property name="maxPoolSize" value="${jdbc.pool.maxPoolSize}"/>
+        <property name="maxIdleTime" value="${jdbc.poolMaxIdleTime}"/>
+        <property name="acquireIncrement" value="${jdbc.pool.acquireIncrement}"/>
+        <property name="testConnectionOnCheckin" value="true"/>
+        <property name="testConnectionOnCheckout" value="true"/>
+    </bean>
+    <!--Mybatis 配置-->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="configLocation" value="classpath:mybatis-config.xml"/>
+        <property name="dataSource" ref="masterDataSource"/>
+        <property name="mapperLocations" value="classpath:mapper/*.xml"/>
+    </bean>
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="annotationClass" value="org.springframework.stereotype.Repository"/>
+        <property name="basePackage" value="com.hydra.sso.server.dao"/>
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+    </bean>
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="masterDataSource"/>
+    </bean>
+    <!--开启事务-->
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+    <!--扫描所有包 自动注入功能-->
+    <context:component-scan base-package="com.hydra.sso.server">
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+    <!--启用aop注解-->
+    <aop:aspectj-autoproxy/>
+    <!--SSO 令牌管理-->
+    <bean id="tokenManager" class="com.hydra.sso.server.common.LocalTokenManager">
+        <property name="tokenTimeout" value="${sso.timeout}"/>
+    </bean>
+</beans>
