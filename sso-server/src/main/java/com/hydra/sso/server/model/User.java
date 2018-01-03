@@ -3,44 +3,25 @@ package com.hydra.sso.server.model;
 import java.io.Serializable;
 import java.util.Date;
 
-/**
- * 用户实体类
- *
- * @author yahto
- * 23/12/2017 10:59 PM
- */
 public class User implements Serializable {
 
-    private static final long serialVersionUID = -1386857259902086586L;
+    private static final long serialVersionUID = 7407584974215543757L;
 
-    /**
-     * 主键
-     */
     private Long id;
-    /**
-     * 用户名
-     */
+
     private String name;
-    /**
-     * 登录名
-     */
+
     private String account;
-    /**
-     * 密码(加密)
-     */
+
     private String password;
-    /**
-     * 最后一次登陆ip
-     */
+
     private String lastLoginIp;
-    /**
-     * 最后一次登陆时间
-     */
+
     private Date lastLoginTime;
-    /**
-     * 登陆次数
-     */
-    private Long loginCount;
+
+    private Integer loginCount;
+
+    private Date createTime;
 
     public Long getId() {
         return id;
@@ -55,7 +36,7 @@ public class User implements Serializable {
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.name = name == null ? null : name.trim();
     }
 
     public String getAccount() {
@@ -63,7 +44,7 @@ public class User implements Serializable {
     }
 
     public void setAccount(String account) {
-        this.account = account;
+        this.account = account == null ? null : account.trim();
     }
 
     public String getPassword() {
@@ -71,7 +52,7 @@ public class User implements Serializable {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = password == null ? null : password.trim();
     }
 
     public String getLastLoginIp() {
@@ -79,7 +60,7 @@ public class User implements Serializable {
     }
 
     public void setLastLoginIp(String lastLoginIp) {
-        this.lastLoginIp = lastLoginIp;
+        this.lastLoginIp = lastLoginIp == null ? null : lastLoginIp.trim();
     }
 
     public Date getLastLoginTime() {
@@ -90,11 +71,19 @@ public class User implements Serializable {
         this.lastLoginTime = lastLoginTime;
     }
 
-    public Long getLoginCount() {
+    public Integer getLoginCount() {
         return loginCount;
     }
 
-    public void setLoginCount(Long loginCount) {
+    public void setLoginCount(Integer loginCount) {
         this.loginCount = loginCount;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 }

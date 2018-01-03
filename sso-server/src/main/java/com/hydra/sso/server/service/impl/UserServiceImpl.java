@@ -53,5 +53,15 @@ public class UserServiceImpl implements UserService {
         return userDao.findUserByAccount(account);
     }
 
+    @Override
+    public Result addUser(User user) {
+        Result result = Result.createSuccessResult();
+        int res = userDao.insertSelective(user);
+        if (res < 1) {
+            result.setCode(ResultCode.ERROR).setMessage("创建用户失败");
+        }
+        return result;
+    }
+
 
 }

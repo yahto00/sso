@@ -9,12 +9,13 @@
             <list>
                 <value>classpath:redis.properties</value>
                 <value>classpath:jdbc.properties</value>
+                <value>classpath:sso.properties</value>
             </list>
         </property>
     </bean>
     <!--Mybatis主从配置-->
     <bean id="masterDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
-        <property name="driverClass" value="${jdbc.dirver}"/>
+        <property name="driverClass" value="${jdbc.driver}"/>
         <property name="jdbcUrl" value="${jdbc.master.url}"/>
         <property name="user" value="${jdbc.master.username}"/>
         <property name="password" value="${jdbc.master.password}"/>

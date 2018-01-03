@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.hydra.sso.server.dao.ApplicationDao">
-    <resultMap id="BaseResultMap" type="com.hydra.sso.server.model.Application">
+<mapper namespace="com.hydra.sso.server.dao.RoleDao">
+    <resultMap id="BaseResultMap" type="com.hydra.sso.server.model.Role">
         <id column="id" property="id" jdbcType="BIGINT"/>
         <result column="name" property="name" jdbcType="VARCHAR"/>
-        <result column="code" property="code" jdbcType="VARCHAR"/>
+        <result column="description" property="description" jdbcType="VARCHAR"/>
         <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
     </resultMap>
     <sql id="Example_Where_Clause">
@@ -68,16 +68,15 @@
         </where>
     </sql>
     <sql id="Base_Column_List">
-    id, name, code, create_time
+    id, name, description, create_time
   </sql>
-    <select id="selectByExample" resultMap="BaseResultMap"
-            parameterType="com.hydra.sso.server.model.ApplicationExample">
+    <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.hydra.sso.server.model.RoleExample">
         select
         <if test="distinct">
             distinct
         </if>
         <include refid="Base_Column_List"/>
-        from sso_application
+        from sso_role
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
@@ -85,37 +84,30 @@
             order by ${orderByClause}
         </if>
     </select>
-    <select id="findApplicationCodeByUserId" resultType="java.lang.String">
-        SELECT a.code FROM sso_application a WHERE a.id EXISTS (
-          SELECT ua.application_id FROM sso_user_application ua
-          WHERE ua.user_id=#{userId,jdbcType=BIGINT}
-          AND a.id=ua.application_id
-        )
-    </select>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
         select
         <include refid="Base_Column_List"/>
-        from sso_application
+        from sso_role
         where id = #{id,jdbcType=BIGINT}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    delete from sso_application
+    delete from sso_role
     where id = #{id,jdbcType=BIGINT}
   </delete>
-    <delete id="deleteByExample" parameterType="com.hydra.sso.server.model.ApplicationExample">
-        delete from sso_application
+    <delete id="deleteByExample" parameterType="com.hydra.sso.server.model.RoleExample">
+        delete from sso_role
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
     </delete>
-    <insert id="insert" parameterType="com.hydra.sso.server.model.Application">
-    insert into sso_application (id, name, code, 
+    <insert id="insert" parameterType="com.hydra.sso.server.model.Role">
+    insert into sso_role (id, name, description, 
       create_time)
-    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
       #{createTime,jdbcType=TIMESTAMP})
   </insert>
-    <insert id="insertSelective" parameterType="com.hydra.sso.server.model.Application">
-        insert into sso_application
+    <insert id="insertSelective" parameterType="com.hydra.sso.server.model.Role">
+        insert into sso_role
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
                 id,
@@ -123,8 +115,8 @@
             <if test="name != null">
                 name,
             </if>
-            <if test="code != null">
-                code,
+            <if test="description != null">
+                description,
             </if>
             <if test="createTime != null">
                 create_time,
@@ -137,23 +129,22 @@
             <if test="name != null">
                 #{name,jdbcType=VARCHAR},
             </if>
-            <if test="code != null">
-                #{code,jdbcType=VARCHAR},
+            <if test="description != null">
+                #{description,jdbcType=VARCHAR},
             </if>
             <if test="createTime != null">
                 #{createTime,jdbcType=TIMESTAMP},
             </if>
         </trim>
     </insert>
-    <select id="countByExample" parameterType="com.hydra.sso.server.model.ApplicationExample"
-            resultType="java.lang.Integer">
-        select count(*) from sso_application
+    <select id="countByExample" parameterType="com.hydra.sso.server.model.RoleExample" resultType="java.lang.Integer">
+        select count(*) from sso_role
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
     </select>
     <update id="updateByExampleSelective" parameterType="map">
-        update sso_application
+        update sso_role
         <set>
             <if test="record.id != null">
                 id = #{record.id,jdbcType=BIGINT},
@@ -161,8 +152,8 @@
             <if test="record.name != null">
                 name = #{record.name,jdbcType=VARCHAR},
             </if>
-            <if test="record.code != null">
-                code = #{record.code,jdbcType=VARCHAR},
+            <if test="record.description != null">
+                description = #{record.description,jdbcType=VARCHAR},
             </if>
             <if test="record.createTime != null">
                 create_time = #{record.createTime,jdbcType=TIMESTAMP},
@@ -173,23 +164,23 @@
         </if>
     </update>
     <update id="updateByExample" parameterType="map">
-        update sso_application
+        update sso_role
         set id = #{record.id,jdbcType=BIGINT},
         name = #{record.name,jdbcType=VARCHAR},
-        code = #{record.code,jdbcType=VARCHAR},
+        description = #{record.description,jdbcType=VARCHAR},
         create_time = #{record.createTime,jdbcType=TIMESTAMP}
         <if test="_parameter != null">
             <include refid="Update_By_Example_Where_Clause"/>
         </if>
     </update>
-    <update id="updateByPrimaryKeySelective" parameterType="com.hydra.sso.server.model.Application">
-        update sso_application
+    <update id="updateByPrimaryKeySelective" parameterType="com.hydra.sso.server.model.Role">
+        update sso_role
         <set>
             <if test="name != null">
                 name = #{name,jdbcType=VARCHAR},
             </if>
-            <if test="code != null">
-                code = #{code,jdbcType=VARCHAR},
+            <if test="description != null">
+                description = #{description,jdbcType=VARCHAR},
             </if>
             <if test="createTime != null">
                 create_time = #{createTime,jdbcType=TIMESTAMP},
@@ -197,10 +188,10 @@
         </set>
         where id = #{id,jdbcType=BIGINT}
     </update>
-    <update id="updateByPrimaryKey" parameterType="com.hydra.sso.server.model.Application">
-    update sso_application
+    <update id="updateByPrimaryKey" parameterType="com.hydra.sso.server.model.Role">
+    update sso_role
     set name = #{name,jdbcType=VARCHAR},
-      code = #{code,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}
   </update>

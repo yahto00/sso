@@ -3,36 +3,19 @@ package com.hydra.sso.server.model;
 import java.io.Serializable;
 import java.util.Date;
 
-/**
- * 权限实体类
- *
- * @author yahto
- * 23/12/2017 10:54 PM
- */
 public class Permission implements Serializable {
 
-    private static final long serialVersionUID = 8241639305825716041L;
+    private static final long serialVersionUID = -5647454943838456369L;
 
-    /**
-     * 主键
-     */
     private Long id;
-    /**
-     * 权限名称
-     */
+
     private String name;
-    /**
-     * 权限访问URL
-     */
+
     private String url;
-    /**
-     * 权限创建时间
-     */
-    private Date createTime;
-    /**
-     * 权限描述
-     */
+
     private String description;
+
+    private Date createTime;
 
     public Long getId() {
         return id;
@@ -47,7 +30,7 @@ public class Permission implements Serializable {
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.name = name == null ? null : name.trim();
     }
 
     public String getUrl() {
@@ -55,7 +38,15 @@ public class Permission implements Serializable {
     }
 
     public void setUrl(String url) {
-        this.url = url;
+        this.url = url == null ? null : url.trim();
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description == null ? null : description.trim();
     }
 
     public Date getCreateTime() {
@@ -64,13 +55,5 @@ public class Permission implements Serializable {
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 }

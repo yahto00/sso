@@ -3,31 +3,16 @@ package com.hydra.sso.server.model;
 import java.io.Serializable;
 import java.util.Date;
 
-/**
- * 角色实体类
- *
- * @author yahto
- * 23/12/2017 10:55 PM
- */
 public class Role implements Serializable {
 
-    private static final long serialVersionUID = 6186776188102860339L;
+    private static final long serialVersionUID = 499944002994084999L;
 
-    /**
-     * 主键
-     */
     private Long id;
-    /**
-     * 角色名
-     */
+
     private String name;
-    /**
-     * 角色描述
-     */
+
     private String description;
-    /**
-     * 角色创建日期
-     */
+
     private Date createTime;
 
     public Long getId() {
@@ -43,7 +28,7 @@ public class Role implements Serializable {
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.name = name == null ? null : name.trim();
     }
 
     public String getDescription() {
@@ -51,7 +36,7 @@ public class Role implements Serializable {
     }
 
     public void setDescription(String description) {
-        this.description = description;
+        this.description = description == null ? null : description.trim();
     }
 
     public Date getCreateTime() {

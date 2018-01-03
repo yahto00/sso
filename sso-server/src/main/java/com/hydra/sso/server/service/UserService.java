@@ -11,4 +11,6 @@ public interface UserService {
     Result login(String ipAddress, String account, String applicationCode, String password);
 
     User findUserByAccount(String account);
+
+    Result addUser(User user);
 }
