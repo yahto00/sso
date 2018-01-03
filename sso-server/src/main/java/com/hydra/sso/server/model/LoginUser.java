@@ -15,6 +15,12 @@ public class LoginUser implements Serializable {
     // 登录成功用户名
     private String account;
 
+    public LoginUser(Long id, String account) {
+        super();
+        this.id = id;
+        this.account = account;
+    }
+
     public Long getId() {
         return id;
     }

@@ -1,4 +1,4 @@
-package com.hydra.sso.server.common;
+package com.hydra.sso.server.common.token;
 
 import com.hydra.sso.server.model.LoginUser;
 import org.slf4j.Logger;

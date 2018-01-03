@@ -2,9 +2,12 @@ package com.hydra.sso.server.web;
 
 import com.hydra.sso.client.filter.SsoFilter;
 import com.hydra.sso.client.model.Result;
+import com.hydra.sso.client.model.ResultCode;
+import com.hydra.sso.client.util.CookieUtils;
 import com.hydra.sso.client.util.StringUtils;
-import com.hydra.sso.server.common.TokenManager;
+import com.hydra.sso.server.common.token.TokenManager;
 import com.hydra.sso.server.model.LoginUser;
+import com.hydra.sso.server.model.User;
 import com.hydra.sso.server.provider.IdProvider;
 import com.hydra.sso.server.provider.PasswordProvider;
 import com.hydra.sso.server.service.UserService;
@@ -18,6 +21,8 @@ import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 
 /**
  * @author yahto
@@ -40,9 +45,21 @@ public class LoginController {
                         @RequestParam("account") String account,
                         @RequestParam("password") String password,
                         HttpServletRequest request,
-                        HttpServletResponse response) {
+                        HttpServletResponse response) throws UnsupportedEncodingException {
         Result result = userService.login(getIpAddress(request), account, applicationCode, PasswordProvider.encrypt(password));
-        return null;
+        if (!result.getCode().equals(ResultCode.SUCCESS)) {
+            request.setAttribute("errorMessage", result.getMessage());
+            return goLoginPath(backUrl, applicationCode, request);
+        }
+        User user = (User) result.getData();
+        LoginUser loginUser = new LoginUser(user.getId(), user.getAccount());
+        String token = CookieUtils.getCookie(request, "token");
+        if (StringUtils.isBlank(token) || tokenManager.validate(token) == null) {
+            token = createToken(loginUser);
+            addTokenInCookie(token, request, response);
+        }
+        backUrl = URLDecoder.decode(backUrl, "utf-8");
+        return "redirect:" + authBackUrl(backUrl, token);
     }
 
     private String goLoginPath(String backUrl, String applicationCode, HttpServletRequest request) {

@@ -14,6 +14,12 @@ public class SsoUser implements Serializable {
 
     private String account;
 
+    public SsoUser(Long id, String account) {
+        super();
+        this.id = id;
+        this.account = account;
+    }
+
     public Long getId() {
         return id;
     }

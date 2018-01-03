@@ -6,4 +6,13 @@
         `last_login_ip`,`last_login_time`,`login_count`) FROM sso_user
         WHERE account = #{account,jdbcType=VARCHAR}
     </select>
+
+    <update id="updateLoginInfo" parameterType="com.hydra.sso.server.model.User">
+        UPDATE sso_user
+        SET last_login_ip = #{lastLoginIp,jdbcType=VARCHAR},
+        last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
+        login_count = login_count + 1
+        WHERE id = #{id,jdbcType=BIGINT}
+    </update>
+
 </mapper>

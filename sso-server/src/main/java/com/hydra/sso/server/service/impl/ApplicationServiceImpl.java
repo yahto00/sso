@@ -18,6 +18,6 @@ public class ApplicationServiceImpl implements ApplicationService {
 
     @Override
     public Set<String> findApplicationCodeByUserId(Long userId) {
-        return null;
+        return applicationDao.findApplicationCodeByUserId(userId);
     }
 }

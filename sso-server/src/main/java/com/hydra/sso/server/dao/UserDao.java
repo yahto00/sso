@@ -11,4 +11,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserDao {
     User findUserByAccount(@Param("account") String account);
+
+    int updateLoginInfo(User user);
 }
