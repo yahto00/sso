@@ -39,6 +39,18 @@ public class LoginController {
     @Resource
     private TokenManager tokenManager;
 
+    /**
+     * 单点系统登录
+     *
+     * @param backUrl
+     * @param applicationCode
+     * @param account
+     * @param password
+     * @param request
+     * @param response
+     * @return
+     * @throws UnsupportedEncodingException
+     */
     @RequestMapping(method = RequestMethod.POST)
     public String login(@RequestParam("backUrl") String backUrl,
                         @RequestParam("applicationCode") String applicationCode,

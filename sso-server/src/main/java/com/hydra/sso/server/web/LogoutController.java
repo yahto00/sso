@@ -21,6 +21,13 @@ public class LogoutController {
     @Resource
     private TokenManager tokenManager;
 
+    /**
+     * 单点系统退出
+     *
+     * @param backUrl
+     * @param request
+     * @return
+     */
     @RequestMapping(method = RequestMethod.GET)
     public String logout(@RequestParam("backUrl") String backUrl,
                          HttpServletRequest request) {

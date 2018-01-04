@@ -107,8 +107,13 @@
     values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, 
       #{description,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
   </insert>
-    <insert id="insertSelective" parameterType="com.hydra.sso.server.model.Permission">
-        insert into sso_permission
+    <insert id="insertRolePermission" parameterType="map">
+        INSERT INTO sso_role_permission (role_id,permission_id,application_id)
+        VALUES (#{roleId,jdbcType=BIGINT},#{permissionId,jdbcType=BIGINT},#{applicationId,jdbcType=BIGINT})
+    </insert>
+    <insert id="insertSelective" parameterType="com.hydra.sso.server.model.Permission"
+            useGeneratedKeys="true" keyProperty="id">
+        insert ignore into sso_permission
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
                 id,
@@ -150,6 +155,28 @@
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
+    </select>
+    <select id="findPermissionListById" resultType="com.hydra.sso.client.api.model.SsoPermission">
+        SELECT p.id,p.name,p.url
+        FROM sso_permission p
+        WHERE p.id in (
+            SELECT rp.permission_id
+            FROM sso_role_permission rp
+            WHERE rp.role_id in (
+              SELECT ur.role_id
+              FROM sso_user_role ur
+              WHERE  ur.user_id = #{userId,jdbcType=BIGINT}
+              AND ur.user_id in (
+                SELECT user_id FROM ((sso_user u
+                                      LEFT JOIN sso_user_application ua
+                                      ON u.id = ua.user_id) LEFT JOIN
+                                      sso_application a
+                                      ON a.id = application_id)
+                                      WHERE a.code = #{applicationCode,jdbcType=VARCHAR}
+              )
+            )
+        )
+
     </select>
     <update id="updateByExampleSelective" parameterType="map">
         update sso_permission

@@ -1,6 +1,8 @@
 package com.hydra.sso.server.service;
 
 import com.hydra.sso.client.api.model.SsoPermission;
+import com.hydra.sso.client.model.Result;
+import com.hydra.sso.server.model.Permission;
 
 import java.util.List;
 
@@ -9,4 +11,6 @@ import java.util.List;
  */
 public interface PermissionService {
     List<SsoPermission> findPermissionListById(String applicationCode, Long userId);
+
+    Result addPermissionByRoleId(Long applicationId,Permission permission, Long roleId);
 }

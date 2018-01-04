@@ -30,4 +30,10 @@ public interface RoleDao {
     int updateByPrimaryKeySelective(Role record);
 
     int updateByPrimaryKey(Role record);
+
+    int addUserRole(@Param("userId") Long userId,
+                    @Param("applicationId") Long applicationId,
+                    @Param("roleIdsList") List<Long> roleIdsList);
+
+    List<Role> queryRoleByApplicationId(Long applicationId);
 }

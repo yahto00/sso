@@ -84,6 +84,16 @@
             order by ${orderByClause}
         </if>
     </select>
+    <select id="queryRoleByApplicationId" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM sso_role WHERE id
+        IN (
+        SELECT ur.role_id
+        FROM sso_user_role AS ur
+        WHERE ur.application_id = #{applicationId,jdbcType=BIGINT}
+        )
+    </select>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
         select
         <include refid="Base_Column_List"/>
@@ -106,8 +116,17 @@
     values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
       #{createTime,jdbcType=TIMESTAMP})
   </insert>
-    <insert id="insertSelective" parameterType="com.hydra.sso.server.model.Role">
-        insert into sso_role
+    <insert id="addUserRole" parameterType="map">
+        INSERT INTO sso_user_role
+        VALUES
+        <foreach collection="list" item="roleId" separator=",">
+            (null,#{userId,jdbcType=BIGINT},#{roleId,jdbcType=BIGINT},#{applicationId,jdbcType=BIGINT})
+        </foreach>
+
+    </insert>
+    <insert id="insertSelective" parameterType="com.hydra.sso.server.model.Role"
+            useGeneratedKeys="true" keyProperty="id">
+        insert ignore into sso_role
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
                 id,

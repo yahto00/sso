@@ -1,4 +1,4 @@
-package com.hydra.sso.server.web;
+package com.hydra.sso.server.web.admin;
 
 import com.hydra.sso.client.model.Result;
 import com.hydra.sso.server.model.User;
@@ -22,6 +22,14 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    /**
+     * 添加用户
+     *
+     * @param name
+     * @param account
+     * @param password
+     * @return
+     */
     @RequestMapping(value = "/addUser.ajax", method = RequestMethod.POST)
     @ResponseBody
     public Result addUser(@RequestParam("name") String name,
