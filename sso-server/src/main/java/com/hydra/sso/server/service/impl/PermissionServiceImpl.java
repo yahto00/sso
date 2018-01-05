@@ -5,6 +5,8 @@ import com.hydra.sso.client.model.Result;
 import com.hydra.sso.client.model.ResultCode;
 import com.hydra.sso.server.dao.PermissionDao;
 import com.hydra.sso.server.model.Permission;
+import com.hydra.sso.server.service.ApplicationService;
+import com.hydra.sso.server.service.PermissionJmsService;
 import com.hydra.sso.server.service.PermissionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +20,10 @@ import java.util.List;
 public class PermissionServiceImpl implements PermissionService {
     @Autowired
     private PermissionDao permissionDao;
+    @Autowired
+    private PermissionJmsService permissionJmsService;
+    @Autowired
+    private ApplicationService applicationService;
 
     @Override
     public List<SsoPermission> findPermissionListById(String applicationCode, Long userId) {
@@ -35,6 +41,8 @@ public class PermissionServiceImpl implements PermissionService {
         if (res < 1) {
             return result.setCode(ResultCode.ERROR).setMessage("添加失败");
         }
+        //权限变更,通知相应的应用
+        permissionJmsService.send(applicationService.findApplicationCodeById(applicationId));
         return result;
     }
 }

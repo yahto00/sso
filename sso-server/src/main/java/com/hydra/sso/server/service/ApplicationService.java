@@ -8,4 +8,6 @@ import java.util.Set;
  */
 public interface ApplicationService {
     Set<String> findApplicationCodeByUserId(Long userId);
+
+    String findApplicationCodeById(Long applicationId);
 }

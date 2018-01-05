@@ -12,7 +12,9 @@
     <artifactId>sso-client</artifactId>
     <name>${project.artifactId}</name>
     <packaging>jar</packaging>
-
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
     <dependencies>
         <!--J2EE-->
         <dependency>

@@ -15,6 +15,7 @@
     </modules>
 
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spring.version>4.2.0.RELEASE</spring.version>
         <spring-redis.version>1.2.2.RELEASE</spring-redis.version>
         <redis.version>2.9.0</redis.version>
@@ -30,6 +31,7 @@
         <zookeeper.client.version>0.1</zookeeper.client.version>
         <netty.version>4.0.23.Final</netty.version>
         <fastjson.version>1.2.36</fastjson.version>
+        <jackson.version>2.7.0</jackson.version>
         <mysql.connector.version>5.1.35</mysql.connector.version>
         <activeMQ.version>5.9.0</activeMQ.version>
     </properties>
@@ -192,6 +194,22 @@
                 <groupId>com.alibaba</groupId>
                 <artifactId>fastjson</artifactId>
                 <version>${fastjson.version}</version>
+            </dependency>
+            <!-- Jackson支持 -->
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-core</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-annotations</artifactId>
+                <version>${jackson.version}</version>
             </dependency>
             <!-- Netty 支持 -->
             <dependency>

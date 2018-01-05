@@ -8,7 +8,6 @@ import com.hydra.sso.server.common.token.TokenManager;
 import com.hydra.sso.server.model.LoginUser;
 import com.hydra.sso.server.service.PermissionService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -17,7 +16,6 @@ import java.util.List;
  * @author yahto
  * 23/12/2017 11:03 PM
  */
-@Service
 public class AuthorizationServiceImpl implements AuthorizationService {
 
     @Resource

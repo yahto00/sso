@@ -55,6 +55,33 @@
         <filter-name>CharacterEncodingFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+    <!--跨域-->
+    <filter>
+        <filter-name>crossOrigin</filter-name>
+        <filter-class>com.hydra.sso.server.common.filter.CrossFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>crossOrigin</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <!--强制后台刷新-->
+    <filter>
+        <filter-name>noCache</filter-name>
+        <filter-class>com.hydra.sso.server.common.filter.NoCacheFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>noCache</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <!--支持GET、POST、PUT与DELETE请求-->
+    <filter>
+        <filter-name>httpMethodFilter</filter-name>
+        <filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>httpMethodFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
     <!-- 单点登录 -->
     <filter>
         <filter-name>ssoFilter</filter-name>

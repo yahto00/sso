@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 import javax.jms.JMSException;
 import javax.jms.Message;
@@ -17,6 +18,7 @@ import javax.jms.TextMessage;
  * @author yahto
  * 23/12/2017 4:57 PM
  */
+@Component
 public class PermissionJmsListener implements MessageListener {
     private static final Logger LOGGER = LoggerFactory.getLogger(PermissionJmsListener.class);
     @Value("${sso.application.code}")

@@ -20,4 +20,9 @@ public class ApplicationServiceImpl implements ApplicationService {
     public Set<String> findApplicationCodeByUserId(Long userId) {
         return applicationDao.findApplicationCodeByUserId(userId);
     }
+
+    @Override
+    public String findApplicationCodeById(Long applicationId) {
+        return applicationDao.selectByPrimaryKey(applicationId).getCode();
+    }
 }

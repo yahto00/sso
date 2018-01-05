@@ -1,11 +1,13 @@
-package com.hydra.sso.client.excecption;
+package com.hydra.sso.server.common.handler;
 
 import com.alibaba.fastjson.JSON;
+import com.hydra.sso.client.excecption.ApplicationException;
 import com.hydra.sso.client.model.Result;
 import com.hydra.sso.client.model.ResultCode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -18,6 +20,7 @@ import java.io.PrintWriter;
  * @author yahto
  * 23/12/2017 2:29 PM
  */
+@Component
 public class ExceptionResolver implements HandlerExceptionResolver {
     private static final Logger LOGGER = LoggerFactory.getLogger(ExceptionResolver.class);
 

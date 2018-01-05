@@ -15,6 +15,16 @@
                 <value>classpath:redis.properties</value>
                 <value>classpath:jdbc.properties</value>
                 <value>classpath:sso.properties</value>
+                <value>classpath:dubbo.properties</value>
+                <value>classpath:activeMq.properties</value>
+            </list>
+        </property>
+    </bean>
+    <bean class="com.hydra.sso.client.util.ConfigUtils">
+        <property name="fileEncoding" value="UTF-8"/>
+        <property name="locations">
+            <list>
+                <value>classpath:sso.properties</value>
             </list>
         </property>
     </bean>
@@ -52,6 +62,7 @@
     <context:component-scan base-package="com.hydra.sso.server">
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
+    <context:component-scan base-package="com.hydra.sso.client"/>
     <!--启用aop注解-->
     <aop:aspectj-autoproxy/>
     <!--SSO 令牌管理-->
@@ -59,4 +70,6 @@
         <property name="tokenTimeout" value="${sso.timeout}"/>
     </bean>
     <import resource="classpath:redis-context.xml"/>
+    <import resource="classpath:applicationContext-dubbo-provider.xml"/>
+    <import resource="applicationContext-activeMq-producer.xml"/>
 </beans>
