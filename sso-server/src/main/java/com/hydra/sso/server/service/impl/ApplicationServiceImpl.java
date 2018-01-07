@@ -1,6 +1,9 @@
 package com.hydra.sso.server.service.impl;
 
+import com.hydra.sso.client.model.Result;
+import com.hydra.sso.client.model.ResultCode;
 import com.hydra.sso.server.dao.ApplicationDao;
+import com.hydra.sso.server.model.Application;
 import com.hydra.sso.server.service.ApplicationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,5 +27,15 @@ public class ApplicationServiceImpl implements ApplicationService {
     @Override
     public String findApplicationCodeById(Long applicationId) {
         return applicationDao.selectByPrimaryKey(applicationId).getCode();
+    }
+
+    @Override
+    public Result addApplication(Application application) {
+        Result result = Result.createSuccessResult();
+        int res = applicationDao.insertSelective(application);
+        if (res < 1) {
+            return result.setCode(ResultCode.ERROR).setMessage("添加应用失败");
+        }
+        return result.setData(application);
     }
 }

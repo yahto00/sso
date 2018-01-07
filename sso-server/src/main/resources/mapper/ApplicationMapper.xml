@@ -114,8 +114,9 @@
     values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, 
       #{createTime,jdbcType=TIMESTAMP})
   </insert>
-    <insert id="insertSelective" parameterType="com.hydra.sso.server.model.Application">
-        insert into sso_application
+    <insert id="insertSelective" parameterType="com.hydra.sso.server.model.Application"
+            useGeneratedKeys="true" keyProperty="id">
+        insert ignore into sso_application
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
                 id,
