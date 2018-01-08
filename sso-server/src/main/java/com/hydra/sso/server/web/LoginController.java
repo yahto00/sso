@@ -40,7 +40,7 @@ public class LoginController {
     private TokenManager tokenManager;
 
     /**
-     * 单点系统登录
+     * 单点系统登录提交
      *
      * @param backUrl
      * @param applicationCode
@@ -72,6 +72,31 @@ public class LoginController {
         }
         backUrl = URLDecoder.decode(backUrl, "utf-8");
         return "redirect:" + authBackUrl(backUrl, token);
+    }
+
+    /**
+     * 登录页
+     *
+     * @param backUrl
+     * @param applicationCode
+     * @param request
+     * @return
+     */
+    @RequestMapping(method = RequestMethod.GET)
+    public String login(@RequestParam("backUrl") String backUrl,
+                        @RequestParam("applicationCode") String applicationCode,
+                        HttpServletRequest request) {
+        String token = CookieUtils.getCookie(request, "token");
+        if (token == null) {
+            return goLoginPath(backUrl, applicationCode, request);
+        } else {
+            LoginUser loginUser = tokenManager.validate(token);
+            if (loginUser != null) {
+                return "redirect:" + authBackUrl(backUrl, token);
+            } else {
+                return goLoginPath(backUrl, applicationCode, request);
+            }
+        }
     }
 
     private String goLoginPath(String backUrl, String applicationCode, HttpServletRequest request) {

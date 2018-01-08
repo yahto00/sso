@@ -174,9 +174,9 @@
         </if>
     </select>
     <select id="findUserByAccount" resultType="com.hydra.sso.server.model.User">
-        SELECT (`id`,`name`,`account`,`password`,
-        `last_login_ip`,`last_login_time`,`login_count`) FROM sso_user
-        WHERE account = #{account,jdbcType=VARCHAR}
+        SELECT `id`,`name`,`account`,`password`,
+        `last_login_ip`,`last_login_time`,`login_count` FROM sso_user
+        WHERE `account` = #{account,jdbcType=VARCHAR}
     </select>
     <update id="updateByExampleSelective" parameterType="map">
         update sso_user

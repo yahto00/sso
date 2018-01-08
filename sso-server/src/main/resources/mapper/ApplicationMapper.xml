@@ -86,7 +86,7 @@
         </if>
     </select>
     <select id="findApplicationCodeByUserId" resultType="java.lang.String">
-        SELECT a.code FROM sso_application a WHERE a.id EXISTS (
+        SELECT a.code FROM sso_application a WHERE EXISTS (
           SELECT ua.application_id FROM sso_user_application ua
           WHERE ua.user_id=#{userId,jdbcType=BIGINT}
           AND a.id=ua.application_id
