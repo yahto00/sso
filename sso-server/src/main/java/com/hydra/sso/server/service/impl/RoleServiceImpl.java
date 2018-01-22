@@ -16,7 +16,7 @@ import java.util.List;
  * Created by yahto on 04/01/2018
  */
 @Service
-public class RoleServiceTest implements RoleService {
+public class RoleServiceImpl implements RoleService {
     @Autowired
     private RoleDao roleDao;
 
