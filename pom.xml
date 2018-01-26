@@ -12,6 +12,7 @@
     <modules>
         <module>sso-client</module>
         <module>sso-server</module>
+        <module>sso-demo</module>
     </modules>
 
     <properties>
