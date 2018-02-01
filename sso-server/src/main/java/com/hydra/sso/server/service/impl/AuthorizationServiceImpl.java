@@ -25,7 +25,7 @@ public class AuthorizationServiceImpl implements AuthorizationService {
 
     @Override
     public boolean validate(String token) {
-        return tokenManager.validate(token) == null;
+        return tokenManager.validate(token) != null;
     }
 
     @Override

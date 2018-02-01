@@ -83,20 +83,20 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
     <!-- 单点登录 -->
-    <filter>
-        <filter-name>ssoFilter</filter-name>
-        <filter-class>com.hydra.sso.client.filter.SsoFilter</filter-class>
-        <init-param>
-            <param-name>excludes</param-name>
-            <param-value>
-                /login,/logout
-            </param-value>
-        </init-param>
-    </filter>
-    <filter-mapping>
-        <filter-name>ssoFilter</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
+    <!--<filter>-->
+        <!--<filter-name>ssoFilter</filter-name>-->
+        <!--<filter-class>com.hydra.sso.client.filter.SsoFilter</filter-class>-->
+        <!--<init-param>-->
+            <!--<param-name>excludes</param-name>-->
+            <!--<param-value>-->
+                <!--/login,/logout-->
+            <!--</param-value>-->
+        <!--</init-param>-->
+    <!--</filter>-->
+    <!--<filter-mapping>-->
+        <!--<filter-name>ssoFilter</filter-name>-->
+        <!--<url-pattern>/*</url-pattern>-->
+    <!--</filter-mapping>-->
     <!-- Spring view分发器 -->
     <servlet>
         <servlet-name>dispatcherServlet</servlet-name>

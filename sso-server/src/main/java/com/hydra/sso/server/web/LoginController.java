@@ -101,7 +101,7 @@ public class LoginController {
 
     private String goLoginPath(String backUrl, String applicationCode, HttpServletRequest request) {
         request.setAttribute("backUrl", backUrl);
-        request.setAttribute("appCode", applicationCode);
+        request.setAttribute("applicationCode", applicationCode);
         return LOGIN_PATH;
     }
 
