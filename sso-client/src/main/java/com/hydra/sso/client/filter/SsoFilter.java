@@ -24,7 +24,7 @@ public class SsoFilter extends ClientFilter {
 
     @Override
     public void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException, ServiceException {
-        String token = getParameterToken(request);
+        String token = getLocalToken(request);
         if (token == null) {
             if (getParameterToken(request) != null) {
                 // 再跳转一次当前URL，以便去掉URL中token参数
