@@ -12,5 +12,7 @@ import java.util.List;
 public interface PermissionService {
     List<SsoPermission> findPermissionListById(String applicationCode, Long userId);
 
-    Result addPermissionByRoleId(Long applicationId,Permission permission, Long roleId);
+    Result addPermissionByRoleId(Long applicationId, Permission permission, Long roleId);
+
+    List<SsoPermission> findPermissionListByApplicationCode(String applicationCode);
 }

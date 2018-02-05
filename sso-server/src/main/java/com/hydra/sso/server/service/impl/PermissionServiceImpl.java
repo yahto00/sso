@@ -45,4 +45,9 @@ public class PermissionServiceImpl implements PermissionService {
         permissionJmsService.send(applicationService.findApplicationCodeById(applicationId));
         return result;
     }
+
+    @Override
+    public List<SsoPermission> findPermissionListByApplicationCode(String applicationCode) {
+        return permissionDao.findPermissionListByApplicationCode(applicationCode);
+    }
 }

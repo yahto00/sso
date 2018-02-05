@@ -68,8 +68,8 @@
         </where>
     </sql>
     <sql id="Base_Column_List">
-    id, name, code, create_time
-  </sql>
+        id, name, code, create_time
+    </sql>
     <select id="selectByExample" resultMap="BaseResultMap"
             parameterType="com.hydra.sso.server.model.ApplicationExample">
         select
@@ -87,9 +87,9 @@
     </select>
     <select id="findApplicationCodeByUserId" resultType="java.lang.String">
         SELECT a.code FROM sso_application a WHERE EXISTS (
-          SELECT ua.application_id FROM sso_user_application ua
-          WHERE ua.user_id=#{userId,jdbcType=BIGINT}
-          AND a.id=ua.application_id
+        SELECT ua.application_id FROM sso_user_application ua
+        WHERE ua.user_id=#{userId,jdbcType=BIGINT}
+        AND a.id=ua.application_id
         )
     </select>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">

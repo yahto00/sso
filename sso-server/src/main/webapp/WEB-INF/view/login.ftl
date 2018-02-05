@@ -24,6 +24,7 @@
         if (r != null) return unescape(r[2]);
         return null; //返回参数值
     }
+
     var backUrl = getUrlParam('backUrl'),
             applicationCode = getUrlParam('applicationCode');
     $('#back_url').val(backUrl);

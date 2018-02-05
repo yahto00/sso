@@ -1,7 +1,6 @@
 package com.hydra.sso.server.utils;
 
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Controller;
 
 /**
  * @author yahto

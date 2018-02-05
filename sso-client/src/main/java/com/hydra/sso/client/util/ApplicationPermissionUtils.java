@@ -37,7 +37,6 @@ public class ApplicationPermissionUtils {
 
         synchronized (monitor) {
             applicationPermissionSet = new HashSet<String>();
-            applicationPermissionSet = new HashSet<String>();
             for (SsoPermission ssoPermission : ssoPermissionList) {
                 if (StringUtils.isNotBlank(ssoPermission.getUrl())) {
                     applicationPermissionSet.add(ssoPermission.getUrl());

@@ -7,7 +7,6 @@ import com.hydra.sso.client.model.Result;
 import com.hydra.sso.client.util.ConfigUtils;
 import com.hydra.sso.client.util.SpringUtils;
 import com.hydra.sso.client.util.StringUtils;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.util.AntPathMatcher;
 import org.springframework.util.PathMatcher;

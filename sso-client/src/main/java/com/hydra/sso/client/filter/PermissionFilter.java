@@ -8,6 +8,8 @@ import com.hydra.sso.client.model.SsoResultCode;
 import com.hydra.sso.client.monitor.PermissionJmsMonitor;
 import com.hydra.sso.client.util.ApplicationPermissionUtils;
 import com.hydra.sso.client.util.SessionUtils;
+import org.springframework.util.AntPathMatcher;
+import org.springframework.util.PathMatcher;
 import org.springframework.util.StringUtils;
 
 import javax.servlet.FilterChain;
@@ -17,6 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -27,10 +30,16 @@ import java.util.Set;
  * 23/12/2017 3:40 PM
  */
 public class PermissionFilter extends ClientFilter {
+    /**
+     * 路径匹配规则
+     */
+    private PathMatcher pathMatcher = null;
+
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
         super.init(filterConfig);
         ApplicationPermissionUtils.initApplicationPermissions(authorizationService, applicationCode);
+        pathMatcher = new AntPathMatcher();
     }
 
     @Override
@@ -38,16 +47,33 @@ public class PermissionFilter extends ClientFilter {
         String path = request.getServletPath();
         if (isPermitted(request, path)) {
             chain.doFilter(request, response);
-        } else if (!ApplicationPermissionUtils.getApplicationPermissionSet().contains(path)) {
+        } else if (!isNeedPermission(path)) {
             chain.doFilter(request, response);
         } else {
             throw new ServiceException(SsoResultCode.SSO_PERMISSION_ERROR, "没有访问权限");
         }
     }
 
+    private boolean isNeedPermission(String path) {
+        Set<String> set = ApplicationPermissionUtils.getApplicationPermissionSet();
+        Iterator<String> iterator = set.iterator();
+        while (iterator.hasNext()) {
+            if (pathMatcher.match(iterator.next(), path)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     private boolean isPermitted(HttpServletRequest request, String path) {
         Set<String> permissionSet = getLocalPermissionSet(request);
-        return permissionSet.contains(path);
+        Iterator<String> iterator = permissionSet.iterator();
+        while (iterator.hasNext()) {
+            if (pathMatcher.match(iterator.next(), path)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private Set<String> getLocalPermissionSet(HttpServletRequest request) {

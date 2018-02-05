@@ -34,8 +34,8 @@
 
     <!-- Spring JmsTemplate 的消息生产者 -->
     <bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
-        <constructor-arg ref="jmsConnectionFactory" />
-        <property name="pubSubDomain" value="true" />
+        <constructor-arg ref="jmsConnectionFactory"/>
+        <property name="pubSubDomain" value="true"/>
     </bean>
     <!--Spring JmsTemplate 的消息生产者 -->
 </beans>

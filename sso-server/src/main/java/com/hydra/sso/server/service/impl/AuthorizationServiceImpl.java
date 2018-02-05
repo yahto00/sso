@@ -40,7 +40,8 @@ public class AuthorizationServiceImpl implements AuthorizationService {
     @Override
     public List<SsoPermission> getPermissionList(String token, String applicationCode) {
         if (StringUtils.isBlank(token)) {
-            return permissionService.findPermissionListById(applicationCode, null);
+            return permissionService.findPermissionListByApplicationCode(applicationCode);
+//            return permissionService.findPermissionListById(applicationCode, null);
         }
         LoginUser loginUser = tokenManager.validate(token);
         if (loginUser != null) {

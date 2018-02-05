@@ -7,7 +7,7 @@ import org.junit.Test;
  */
 public class PasswordProviderTest {
     @Test
-    public void test(){
+    public void test() {
         System.out.println(PasswordProvider.encrypt("123"));
     }
 }

@@ -32,9 +32,12 @@ public interface PermissionDao {
 
     int updateByPrimaryKey(Permission record);
 
-    List<SsoPermission> findPermissionListById(String applicationCode, Long userId);
+    List<SsoPermission> findPermissionListById(@Param("applicationCode") String applicationCode,
+                                               @Param("userId") Long userId);
 
     int insertRolePermission(@Param("applicationId") Long applicationId,
                              @Param("roleId") Long roleId,
                              @Param("permissionId") Long permissionId);
+
+    List<SsoPermission> findPermissionListByApplicationCode(@Param("applicationCode") String applicationCode);
 }
