@@ -119,7 +119,7 @@
     <insert id="addUserRole" parameterType="map">
         INSERT INTO sso_user_role
         VALUES
-        <foreach collection="list" item="roleId" separator=",">
+        <foreach collection="roleIdsList" item="roleId" separator=",">
             (null,#{userId,jdbcType=BIGINT},#{roleId,jdbcType=BIGINT},#{applicationId,jdbcType=BIGINT})
         </foreach>
 

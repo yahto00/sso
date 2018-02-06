@@ -21,7 +21,7 @@ public class PermissionController {
     private PermissionService permissionService;
 
     /**
-     * 添加权限
+     * 添加需要管理的权限
      *
      * @param roleId
      * @param permissionName
@@ -43,5 +43,11 @@ public class PermissionController {
         permission.setDescription(permissionDescription);
         permission.setCreateTime(new Date());
         return permissionService.addPermissionByRoleId(applicationId, permission, roleId);
+    }
+
+    @RequestMapping("/authorizePermission.ajax")
+    @ResponseBody
+    public Result authorizePermission() {
+        return null;
     }
 }

@@ -3,6 +3,7 @@ package com.hydra.sso.server.service;
 import com.hydra.sso.client.model.Result;
 import com.hydra.sso.server.model.Application;
 
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -15,4 +16,6 @@ public interface ApplicationService {
     String findApplicationCodeById(Long applicationId);
 
     Result addApplication(Application application);
+
+    List<Application> getApplicationByPage(Integer start, Integer pageSize);
 }

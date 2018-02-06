@@ -33,4 +33,6 @@ public interface ApplicationDao {
     int updateByPrimaryKey(Application record);
 
     Set<String> findApplicationCodeByUserId(Long userId);
+
+    List<Application> getAllApplication();
 }

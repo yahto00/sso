@@ -1,5 +1,6 @@
 package com.hydra.sso.server.service.impl;
 
+import com.github.pagehelper.PageHelper;
 import com.hydra.sso.client.model.Result;
 import com.hydra.sso.client.model.ResultCode;
 import com.hydra.sso.server.dao.ApplicationDao;
@@ -8,6 +9,7 @@ import com.hydra.sso.server.service.ApplicationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -37,5 +39,12 @@ public class ApplicationServiceImpl implements ApplicationService {
             return result.setCode(ResultCode.ERROR).setMessage("添加应用失败");
         }
         return result.setData(application);
+    }
+
+    @Override
+    public List<Application> getApplicationByPage(Integer start, Integer pageSize) {
+        PageHelper.startPage(start, pageSize, true);
+        List<Application> applicationList = applicationDao.getAllApplication();
+        return applicationList;
     }
 }

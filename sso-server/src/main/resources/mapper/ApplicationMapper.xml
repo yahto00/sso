@@ -92,6 +92,11 @@
         AND a.id=ua.application_id
         )
     </select>
+    <select id="getAllApplication" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM sso_application
+    </select>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
         select
         <include refid="Base_Column_List"/>

@@ -67,4 +67,5 @@
     <aop:aspectj-autoproxy/>
     <!--SSO 令牌管理-->
     <import resource="applicationContext-dubbo-customer.xml"/>
+    <import resource="applicationContext-activeMq-customer.xml"/>
 </beans>

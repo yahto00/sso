@@ -149,6 +149,12 @@
             </if>
         </trim>
     </insert>
+    <insert id="insertApplicationPermission" parameterType="map">
+        INSERT INTO sso_application_permission (application_id,permission_id)
+        VALUES (
+            #{applicationId,jdbcType=BIGINT},#{permissionId,jdbcType=BIGINT}
+        )
+    </insert>
     <select id="countByExample" parameterType="com.hydra.sso.server.model.PermissionExample"
             resultType="java.lang.Integer">
         select count(*) from sso_permission

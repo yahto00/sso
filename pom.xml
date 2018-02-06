@@ -262,6 +262,17 @@
                 <artifactId>activemq-client</artifactId>
                 <version>${activeMQ.version}</version>
             </dependency>
+            <!-- Mybatis 分页插件-->
+            <dependency>
+                <groupId>com.github.pagehelper</groupId>
+                <artifactId>pagehelper</artifactId>
+                <version>4.2.1</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.jsqlparser</groupId>
+                <artifactId>jsqlparser</artifactId>
+                <version>0.9.5</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
     <!-- 阿里云镜像 -->

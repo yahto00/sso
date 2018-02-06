@@ -40,4 +40,7 @@ public interface PermissionDao {
                              @Param("permissionId") Long permissionId);
 
     List<SsoPermission> findPermissionListByApplicationCode(@Param("applicationCode") String applicationCode);
+
+    int insertApplicationPermission(@Param("applicationId") Long applicationId,
+                                    @Param("permissionId") Long permissionId);
 }
