@@ -17,6 +17,6 @@ public class PermissionServiceTest {
 
     @Test
     public void test() {
-        System.out.println(permissionService.findPermissionListByApplicationCode("ssoKKK"));
+        System.out.println(permissionService.findPermissionListByApplicationCode("b80351bbfec244d99f94d4696b748d21"));
     }
 }

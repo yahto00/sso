@@ -1,6 +1,5 @@
 package com.hydra.sso.server.web.admin;
 
-import com.github.pagehelper.PageHelper;
 import com.hydra.sso.client.model.Result;
 import com.hydra.sso.client.model.ResultCode;
 import com.hydra.sso.server.model.Application;
@@ -46,8 +45,8 @@ public class ApplicationController {
     @ResponseBody
     public Result getApplicationByPage(@RequestParam("start") Integer start,
                                        @RequestParam("pageSize") Integer pageSize) {
-        List<Application> applicationList = applicationService.getApplicationByPage(start,pageSize);
-        if(CollectionUtils.isEmpty(applicationList)){
+        List<Application> applicationList = applicationService.getApplicationByPage(start, pageSize);
+        if (CollectionUtils.isEmpty(applicationList)) {
             return Result.create(ResultCode.ERROR).setMessage("没有数据");
         }
         return Result.createSuccessResult().setData(applicationList);

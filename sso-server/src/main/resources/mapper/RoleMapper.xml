@@ -101,9 +101,9 @@
         where id = #{id,jdbcType=BIGINT}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    delete from sso_role
-    where id = #{id,jdbcType=BIGINT}
-  </delete>
+        delete from sso_role
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
     <delete id="deleteByExample" parameterType="com.hydra.sso.server.model.RoleExample">
         delete from sso_role
         <if test="_parameter != null">
@@ -111,11 +111,11 @@
         </if>
     </delete>
     <insert id="insert" parameterType="com.hydra.sso.server.model.Role">
-    insert into sso_role (id, name, description, 
-      create_time)
-    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
-      #{createTime,jdbcType=TIMESTAMP})
-  </insert>
+        insert into sso_role (id, name, description,
+        create_time)
+        values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR},
+        #{createTime,jdbcType=TIMESTAMP})
+    </insert>
     <insert id="addUserRole" parameterType="map">
         INSERT INTO sso_user_role
         VALUES
@@ -208,10 +208,10 @@
         where id = #{id,jdbcType=BIGINT}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.hydra.sso.server.model.Role">
-    update sso_role
-    set name = #{name,jdbcType=VARCHAR},
-      description = #{description,jdbcType=VARCHAR},
-      create_time = #{createTime,jdbcType=TIMESTAMP}
-    where id = #{id,jdbcType=BIGINT}
-  </update>
+        update sso_role
+        set name = #{name,jdbcType=VARCHAR},
+        description = #{description,jdbcType=VARCHAR},
+        create_time = #{createTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
 </mapper>

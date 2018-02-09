@@ -95,9 +95,9 @@
         where id = #{id,jdbcType=BIGINT}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    delete from sso_user
-    where id = #{id,jdbcType=BIGINT}
-  </delete>
+        delete from sso_user
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
     <delete id="deleteByExample" parameterType="com.hydra.sso.server.model.UserExample">
         delete from sso_user
         <if test="_parameter != null">
@@ -105,13 +105,13 @@
         </if>
     </delete>
     <insert id="insert" parameterType="com.hydra.sso.server.model.User">
-    insert into sso_user (id, name, account, 
-      password, last_login_ip, last_login_time, 
-      login_count, create_time)
-    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{account,jdbcType=VARCHAR}, 
-      #{password,jdbcType=VARCHAR}, #{lastLoginIp,jdbcType=VARCHAR}, #{lastLoginTime,jdbcType=TIMESTAMP}, 
-      #{loginCount,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP})
-  </insert>
+        insert into sso_user (id, name, account,
+        password, last_login_ip, last_login_time,
+        login_count, create_time)
+        values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{account,jdbcType=VARCHAR},
+        #{password,jdbcType=VARCHAR}, #{lastLoginIp,jdbcType=VARCHAR}, #{lastLoginTime,jdbcType=TIMESTAMP},
+        #{loginCount,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP})
+    </insert>
     <insert id="insertSelective" parameterType="com.hydra.sso.server.model.User">
         insert ignore into sso_user
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -259,14 +259,14 @@
         WHERE id = #{id,jdbcType=BIGINT}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.hydra.sso.server.model.User">
-    update sso_user
-    set name = #{name,jdbcType=VARCHAR},
-      account = #{account,jdbcType=VARCHAR},
-      password = #{password,jdbcType=VARCHAR},
-      last_login_ip = #{lastLoginIp,jdbcType=VARCHAR},
-      last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
-      login_count = #{loginCount,jdbcType=INTEGER},
-      create_time = #{createTime,jdbcType=TIMESTAMP}
-    where id = #{id,jdbcType=BIGINT}
-  </update>
+        update sso_user
+        set name = #{name,jdbcType=VARCHAR},
+        account = #{account,jdbcType=VARCHAR},
+        password = #{password,jdbcType=VARCHAR},
+        last_login_ip = #{lastLoginIp,jdbcType=VARCHAR},
+        last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
+        login_count = #{loginCount,jdbcType=INTEGER},
+        create_time = #{createTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
 </mapper>

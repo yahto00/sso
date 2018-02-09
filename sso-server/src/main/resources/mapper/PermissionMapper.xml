@@ -184,16 +184,6 @@
         )
     </select>
     <select id="findPermissionListByApplicationCode" resultType="com.hydra.sso.client.api.model.SsoPermission">
---       SELECT p.id,p.name,p.url
---       FROM sso_permission p
---       WHERE p.id IN (
---           SELECT sp.id
---           FROM sso_permission sp
---           LEFT JOIN sso_application_permission ap
---           ON sp.id = ap.permission_id
---           LEFT JOIN sso_application a
---           ON ap.application_id = a.id
---           WHERE  a.code = #{applicationCode,jdbcType=VARCHAR});
         SELECT p.id,p.name,p.url
         FROM sso_permission p
         WHERE EXISTS (

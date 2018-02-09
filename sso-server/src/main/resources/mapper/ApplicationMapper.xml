@@ -104,9 +104,9 @@
         where id = #{id,jdbcType=BIGINT}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    delete from sso_application
-    where id = #{id,jdbcType=BIGINT}
-  </delete>
+        delete from sso_application
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
     <delete id="deleteByExample" parameterType="com.hydra.sso.server.model.ApplicationExample">
         delete from sso_application
         <if test="_parameter != null">
@@ -114,11 +114,11 @@
         </if>
     </delete>
     <insert id="insert" parameterType="com.hydra.sso.server.model.Application">
-    insert into sso_application (id, name, code, 
-      create_time)
-    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, 
-      #{createTime,jdbcType=TIMESTAMP})
-  </insert>
+        insert into sso_application (id, name, code,
+        create_time)
+        values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR},
+        #{createTime,jdbcType=TIMESTAMP})
+    </insert>
     <insert id="insertSelective" parameterType="com.hydra.sso.server.model.Application"
             useGeneratedKeys="true" keyProperty="id">
         insert ignore into sso_application
@@ -204,10 +204,10 @@
         where id = #{id,jdbcType=BIGINT}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.hydra.sso.server.model.Application">
-    update sso_application
-    set name = #{name,jdbcType=VARCHAR},
-      code = #{code,jdbcType=VARCHAR},
-      create_time = #{createTime,jdbcType=TIMESTAMP}
-    where id = #{id,jdbcType=BIGINT}
-  </update>
+        update sso_application
+        set name = #{name,jdbcType=VARCHAR},
+        code = #{code,jdbcType=VARCHAR},
+        create_time = #{createTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
 </mapper>
