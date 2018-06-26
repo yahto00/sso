@@ -24,7 +24,8 @@ public class ApplicationPermissionUtils {
     private static Object monitor = new Object();
 
     /**
-     * 1.应用初始化，获取应用所有的菜单及权限 2.权限有变动修改，JMS通知重新加载
+     * 1.应用初始化，获取应用所有的菜单及权限
+     * 2.权限有变动修改，JMS通知重新加载
      */
     public static void initApplicationPermissions(AuthorizationService authenticationRpcService, String applocationCode) {
         List<SsoPermission> ssoPermissionList = null;

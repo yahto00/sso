@@ -71,5 +71,5 @@
     </bean>
     <import resource="classpath:redis-context.xml"/>
     <import resource="classpath:applicationContext-dubbo-provider.xml"/>
-    <import resource="applicationContext-activeMq-producer.xml"/>
+    <import resource="classpath:applicationContext-activeMq-producer.xml"/>
 </beans>

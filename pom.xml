@@ -276,11 +276,11 @@
         </dependencies>
     </dependencyManagement>
     <!-- 阿里云镜像 -->
-    <repositories>
-        <repository>
-            <id>nexus-aliyun</id>
-            <name>Nexus Aliyun</name>
-            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
-        </repository>
-    </repositories>
+    <!--<repositories>-->
+        <!--<repository>-->
+            <!--<id>nexus-aliyun</id>-->
+            <!--<name>Nexus Aliyun</name>-->
+            <!--<url>http://maven.aliyun.com/nexus/content/groups/public/</url>-->
+        <!--</repository>-->
+    <!--</repositories>-->
 </project>
